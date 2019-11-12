@@ -1,14 +1,14 @@
 {
     "manifestVersion": 1.0,
-    "id": "vsts-work-item-one-click-child-links",
-    "version": "0.10.1",
-    "name": "1-Click Child-Links",
+    "id": "vsts-work-item-one-click-child-links-2",
+    "version": "0.10.2",
+    "name": "1-Click Child-Links 2.0",
     "description": "Add Child-Links from pre-defined templates with a single click.",
     "public": false,
-    "publisher": "ruifig",
+    "publisher": "wilksmatt",
     "repository": {
         "type": "git",
-        "uri": "https://github.com/figueiredorui/1-click-child-links"
+        "uri": ""
     },
     "icons": {
         "default": "img/one-click.png"
