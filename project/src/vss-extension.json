@@ -1,14 +1,14 @@
 {
     "manifestVersion": 1.0,
     "id": "vsts-work-item-one-click-child-links-2",
-    "version": "0.10.2",
+    "version": "0.10.5",
     "name": "1-Click Child-Links 2.0",
     "description": "Add Child-Links from pre-defined templates with a single click.",
     "public": false,
     "publisher": "wilksmatt",
     "repository": {
         "type": "git",
-        "uri": ""
+        "uri": "https://github.com/wilksmatt/1-click-child-links"
     },
     "icons": {
         "default": "img/one-click.png"
@@ -28,7 +28,7 @@
         "Tasks"
     ],
     "categories": [
-        "Plan and track"
+        "Azure Boards"
     ],
     "content": {
         "details": {
