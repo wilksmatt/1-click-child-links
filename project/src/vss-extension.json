@@ -1,9 +1,9 @@
 {
     "manifestVersion": 1.0,
-    "id": "vsts-work-item-one-click-child-links-2",
-    "version": "0.10.5",
-    "name": "1-Click Child-Links 2.0",
-    "description": "Add Child-Links from pre-defined templates with a single click.",
+    "id": "create-child-tasks",
+    "version": "0.1.5",
+    "name": "Create Child Tasks",
+    "description": "Add pre-defined task templates to a work item with a single click.",
     "public": false,
     "publisher": "wilksmatt",
     "repository": {
@@ -66,17 +66,17 @@
         {
             "id": "create-child-task-work-item-button",
             "type": "ms.vss-web.action",
-            "description": "1-Click Child-Links",
+            "description": "Create Child Tasks",
             "targets": [
                 "ms.vss-work-web.work-item-toolbar-menu", 
                 "ms.vss-work-web.backlog-item-menu",
                 "ms.vss-work-web.work-item-context-menu"
             ],
             "properties": {
-                "text": " 1-Click Child-Links",
-                "title": "1-Click Child-Links",
-                "toolbarText": "1-Click Child-Links",                
-                "icon": "img/one-click16.png",
+                "text": "Create Child Tasks",
+                "title": "Create Child Tasks",
+                "toolbarText": "Create Child Tasks",                
+                "icon": "img/create-child-tasks-icon-16x16.png",
                 "uri": "toolbar.html",
                 "registeredObjectId": "create-child-task-work-item-button"
             }

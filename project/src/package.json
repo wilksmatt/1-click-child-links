@@ -9,8 +9,8 @@
     "requirejs": "^2.2.0",
     "vss-web-extension-sdk": "^1.104.0"
   },
-  "name": "vsts-work-item-one-click-child-links",
+  "name": "create-child-tasks",
   "private": true,
-  "version": "0.10.1",
+  "version": "0.1.0",
   "scripts": {}
 }

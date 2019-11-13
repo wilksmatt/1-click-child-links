@@ -283,14 +283,17 @@ define(["TFS/WorkItemTracking/Services", "TFS/WorkItemTracking/RestClient", "TFS
                             matchField('System.Title', currentWorkItem, el) &&
                             matchField('System.AreaPath', currentWorkItem, el) &&
                             matchField('System.WorkItemType', currentWorkItem, el)
-                            //(hasWorkItemType.length > 0 ? matchField('System.WorkItemType', currentWorkItem, el) : true)
+                            //(hasWorkItemType.length > 0 ? matchField('System.WorkItemType', currentWorkItem, el) : false)
                         );
                     }
                 );
-
                 return applicableFilter.length > 0;
-            } else {
-                var filters = taskTemplate.description.match(/[^[\]]+(?=])/g);
+            } 
+            else {
+
+                return false;
+
+                /*var filters = taskTemplate.description.match(/[^[\]]+(?=])/g);
 
                 if (filters) {
                     var isValid = false;
@@ -304,7 +307,7 @@ define(["TFS/WorkItemTracking/Services", "TFS/WorkItemTracking/RestClient", "TFS
                     return isValid;
                 } else {
                     return true;
-                }
+                }*/
             }
         }
 
