@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1.0,
     "id": "create-child-tasks",
-    "version": "0.1.5",
+    "version": "0.1.6",
     "name": "Create Child Tasks",
     "description": "Add pre-defined task templates to a work item with a single click.",
     "public": false,
@@ -11,7 +11,7 @@
         "uri": "https://github.com/wilksmatt/1-click-child-links"
     },
     "icons": {
-        "default": "img/one-click.png"
+        "default": "img/create-child-tasks-logo-128x128.png"
     },
     "screenshots": [
         {

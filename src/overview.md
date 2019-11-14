@@ -27,7 +27,8 @@ Complex: put a minified (single line) JSON string into the child template's desc
         "System.BoardLane": "Off radar",
         "System.State": "Custom State",
         "System.Title": "Repeatable item",
-        "System.WorkItemType": "Custom Type"
+        "System.WorkItemType": "Product Backlog Item",
+        "System.AreaPath": "Root\\Some Path"
     }]
 }
 ```

@@ -239,40 +239,23 @@ define(["TFS/WorkItemTracking/Services", "TFS/WorkItemTracking/RestClient", "TFS
             };
         }
 
+        /**
+         * Check whether the criteria provided in the child work item template description matches the 
+         * current work item. There are two different ways to provide criteria: 1) Using JSON to specify 
+         * complex filtering rules; 2) Using square brackets to specify the parent work item types delimited
+         * by commas (e.g. "[Product Backlog Item, Bug]").
+         * @param {*} currentWorkItem 
+         * @param {*} taskTemplate 
+         */
         function IsValidTemplateWIT(currentWorkItem, taskTemplate) {
 
-            // We need to maintain backward compatibility with the original filtering approach using square brackets.
-            // If not empty, does the description have the old square bracket approach or new JSON?
+            // Get the JSON information from the child work item template description
             var jsonFilters = extractJSON(taskTemplate.description)[0];
 
+            // Check whether the JSON string is valid
             if (IsJsonString(JSON.stringify(jsonFilters))) {
-                // example JSON:
-                //
-                //   {
-                //      "applywhen": [
-                //        {
-                //          "System.State": "Approved",
-                //          "System.Tags" : ["Blah", "ClickMe"],
-                //          "System.WorkItemType": "Product Backlog Item"
-                //        },
-                //        {
-                //          "System.BoardColumn": "Testing",
-                //          "System.BoardLane": "Off radar",
-                //          "System.State": "Custom State",
-                //          "System.Title": "Repeatable item",
-                //          "System.WorkItemType": "Custom Type",
-                //          "System.AreaPath": "Hotel Demo Project\\Mobile"
-                //        }
-                //      ]
-                //    }
 
-                // Match work item type if present, otherwise assume the first record without a work item type applies.
-                /*var hasWorkItemType = jsonFilters.applywhen.filter(
-                    function (el) {
-                        return (el['System.WorkItemType'] !== "undefined");
-                    }
-                );*/
-
+                // Check whether any of the criteria specified in the child work item template JSON matches the current work item
                 var applicableFilter = jsonFilters.applywhen.filter(
                     function (el) {
                         return (
@@ -283,31 +266,29 @@ define(["TFS/WorkItemTracking/Services", "TFS/WorkItemTracking/RestClient", "TFS
                             matchField('System.Title', currentWorkItem, el) &&
                             matchField('System.AreaPath', currentWorkItem, el) &&
                             matchField('System.WorkItemType', currentWorkItem, el)
-                            //(hasWorkItemType.length > 0 ? matchField('System.WorkItemType', currentWorkItem, el) : false)
                         );
                     }
                 );
+
+                // Return 'true' if any of the fields matched
                 return applicableFilter.length > 0;
             } 
+            // Check whether the current work item type was specified using the basic square brackets approach in the child work item template description
             else {
 
-                return false;
+                // Parse the criteria in the square brackets
+                var filters = taskTemplate.description.match(/[^[\]]+(?=])/g);
 
-                /*var filters = taskTemplate.description.match(/[^[\]]+(?=])/g);
-
+                // Find whether the current work item matches
                 if (filters) {
-                    var isValid = false;
                     for (var i = 0; i < filters.length; i++) {
                         var found = filters[i].split(',').find(function (f) { return f.trim().toLowerCase() == currentWorkItem["System.WorkItemType"].toLowerCase() });
                         if (found) {
-                            isValid = true;
-                            break;
+                            return true;
                         }
                     }
-                    return isValid;
-                } else {
-                    return true;
-                }*/
+                } 
+                return false;
             }
         }
 
