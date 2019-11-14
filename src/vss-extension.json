@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1.0,
     "id": "create-child-tasks",
-    "version": "0.1.7",
+    "version": "0.1.9",
     "name": "Create Child Tasks",
     "description": "Add pre-defined task templates to a work item with a single click.",
     "public": false,
@@ -76,10 +76,7 @@
                 "text": "Create Child Tasks",
                 "title": "Create Child Tasks",
                 "toolbarText": "Create Child Tasks",                
-                "icon": {
-                    "light": "img/create-child-tasks-icon-light-16x16.png",
-                    "dark": "img/create-child-tasks-icon-dark-16x16.png"
-                },
+                "icon": "img/create-child-tasks-icon-16x16.png",
                 "uri": "toolbar.html",
                 "registeredObjectId": "create-child-task-work-item-button"
             }
