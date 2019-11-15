@@ -1,4 +1,4 @@
-## Create Child Tasks ##
+# Create Child Tasks #
 
 Create Child Tasks is an Azure DevOps extension for creating multiple Task work items as children via single click, where each Task work item is based on a single pre-defined Task template.
 
@@ -8,13 +8,29 @@ The child Task work items created by this extension are based on the hierarchy o
 
 For example, if you're using a process inherited from the agile template with a custom requirement-level type called defect and 3 Task templates defined, using this extension on a User Story or Defect work item will generate three child Tasks; one for each defined template.
 
-It's also possible to limit which parent work items apply to each template in one of two ways:
+# How-To Guide #
 
-Simplified: Put the list of applicable parent work item types in the child Task template's description field, like this:
+## Managing Work Item Templates ##
+
+### Defining Task Templates ###
+
+View Microsoft's documentation about how to <a href="https://docs.microsoft.com/en-us/azure/devops/boards/backlogs/work-item-template?toc=%2Fazure%2Fdevops%2Fboards%2Ftoc.json&bc=%2Fazure%2Fdevops%2Fboards%2Fbreadcrumb%2Ftoc.json&view=azure-devops&tabs=browser" target="_blank">add and manage work item templates</a>.
+
+<img src="src/img/screen01.png" alt="Define team templates" />
+
+## Creating Task Template Filter Rules ##
+
+With this extension, it's possible to limit which parent work items apply to each Task template in one of two ways:
+
+### Simplified ###
+
+Put the list of applicable parent work item types in the child Task template's description field, like this:
 
 ```[Product Backlog Item,Defect]```
 
-Complex: Put a minified (single line) JSON string into the child Task template's description field, like this:
+### Complex ###
+
+Put a minified (single line) JSON string into the child Task template's description field, like this:
 
 ``` json
 {
@@ -35,19 +51,11 @@ Complex: Put a minified (single line) JSON string into the child Task template's
 }
 ```
 
-### Define team templates ###
+### Applying Child Tasks ###
 
-<a href="https://docs.microsoft.com/en-us/azure/devops/boards/backlogs/work-item-template?view=azure-devops&tabs=browser#manage" target="_blank">Manage work item templates</a>
-
-<img src="src/img/screen01.png" alt="Define team templates" />
-
-### Create / open a work item ###
-
-Find 1-Click Child-Links on toolbar menu
+Find the 'Create Child Tasks' option on toolbar menu of the parent work item (E.g. Product Backlog Item, User Story, Bug).
 
 <img src="src/img/screen02.png" alt="1-Click Child-Links on work item form menu"/>
-
-### Done ###
 
 You should now have children associated with the open work item.
 
