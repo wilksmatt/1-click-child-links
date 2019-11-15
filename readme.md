@@ -20,7 +20,7 @@ With this extension, it's possible to limit which parent work items apply to eac
 
 Put the list of applicable parent work item types in the child Task template's description field, like this:
 
-```[Product Backlog Item,Defect]```
+```[Product Backlog Item, Defect]```
 
 ### Complex ###
 
@@ -33,11 +33,11 @@ Put a minified (single line) JSON string into the child Task template's descript
         "System.State": "Approved",
         "System.Tags" : ["Blah", "ClickMe"],
         "System.WorkItemType": "Product Backlog Item",
-        "System.AreaPath": "Root\\Sub Path"
+        "System.AreaPath": "Root\\Sub Path\\Another Sub Path"
     },
     {
         "System.BoardColumn": "Testing",
-        "System.BoardLane": "Off radar",
+        "System.BoardLane": "Expedite",
         "System.State": "Custom State",
         "System.Title": "Repeatable item",
         "System.WorkItemType": "Custom Type"
