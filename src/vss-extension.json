@@ -15,13 +15,22 @@
     },
     "screenshots": [
         {
-            "path": "img/screen01.png"
+            "path": "img/create-child-tasks-screenshot-manage-templates.png"
         },
         {
-            "path": "img/screen02.png"
+            "path": "img/create-child-tasks-screenshot-manage-templates-order.png"
         },
         {
-            "path": "img/screen03.png"
+            "path": "img/create-child-tasks-screenshot-manage-templates-filter-rules.png"
+        },
+        {
+            "path": "img/create-child-tasks-screenshot-manage-templates-menu-item.png"
+        },
+        {
+            "path": "img/create-child-tasks-screenshot-manage-templates-work-item-tasks.png"
+        },
+        {
+            "path": "img/create-child-tasks-screenshot-manage-templates-board-work-item-tasks.png"
         }
     ],
     "tags": [
