@@ -22,7 +22,7 @@ With this extension, it's possible to specify which parent work items apply to e
 
 Put the list of applicable parent work item types in the child Task template's description field, like this:
 
-```[Product Backlog Item, Defect]```
+```[Product Backlog Item, Bug]```
 
 #### Complex ####
 
