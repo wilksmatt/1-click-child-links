@@ -14,7 +14,7 @@ Azure DevOps offers team-specific work item templating as core functionality wit
 
 ### Creating Task Template Filter Rules ###
 
-With this extension, it's possible to specify which parent work items apply to each Task template in one of two ways:
+With this extension, it's possible to specify which parent work items apply to each Task template by putting rules into the Task template *Description* field. There are two ways that you can specify these rules:
 
 <img src="src/img/create-child-tasks-screenshot-manage-templates-filter-rules.png" alt="Creating task template filter rules" />
 
