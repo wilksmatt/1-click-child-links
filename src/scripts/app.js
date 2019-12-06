@@ -455,13 +455,48 @@ define(["TFS/WorkItemTracking/Services", "TFS/WorkItemTracking/RestClient", "TFS
         }
 
         function matchField(fieldName, currentWorkItem, filterElement) {
-            return (
-                typeof (filterElement[fieldName]) === "undefined" ||
-                (!Array.isArray(filterElement[fieldName].toLowerCase()) && filterElement[fieldName].toLowerCase() === currentWorkItem[fieldName].toLowerCase()) ||
-                (Array.isArray(filterElement[fieldName].toLowerCase()) && arraysEqual(filterElement[fieldName], currentWorkItem[fieldName]))
-            );
+            // If the filter criteria value is not defined
+            if(typeof (filterElement[fieldName]) === "undefined"){
+                return true;
+            }
+
+            // If the title field matches a wildcard string comparison (e.g. "*word*")
+            if(fieldName === "System.Title"){
+                return matchWildcardString(currentWorkItem[fieldName], filterElement[fieldName]);
+            }
+
+            // If the filter criteria is not an array
+            if(!Array.isArray(filterElement[fieldName].toLowerCase()) && filterElement[fieldName].toLowerCase() === currentWorkItem[fieldName].toLowerCase()){
+                return true;
+            }
+            
+            // If the filter criteria is an array
+            if(Array.isArray(filterElement[fieldName].toLowerCase()) && arraysEqual(filterElement[fieldName], currentWorkItem[fieldName])){
+                return true;
+            }
         }
 
+        /**
+         * Compare a strong to another wildcard string (i.e. rule). Examples:
+         * - "a*b" => everything that starts with "a" and ends with "b"
+         * - "a*" => everything that starts with "a"
+         * - "*b" => everything that ends with "b"
+         * - "*a*" => everything that has an "a" in it
+         * - "*a*b*"=> everything that has an "a" in it, followed by anything, followed by a "b", followed by anything
+         * https://stackoverflow.com/questions/26246601/wildcard-string-comparison-in-javascript
+         * @param {*} str 
+         * @param {*} rule 
+         */
+        function matchWildcardString(str, rule) {
+            var escapeRegex = (str) => str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+            return new RegExp("^" + rule.split("*").map(escapeRegex).join(".*") + "$").test(str);
+        }
+
+        /**
+         * Compare two arrays.
+         * @param {*} a 
+         * @param {*} b 
+         */
         function arraysEqual(a, b) {
             if (a === b) return true;
             if (a == null || b == null) return false;

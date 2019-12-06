@@ -67,6 +67,30 @@ When creating the tasks with the extension, the tasks will then show up in the s
 
 <img src="src/img/create-child-tasks-screenshot-board-work-item-tasks.png" alt="Board work item with tasks in order" />
 
+### Using 'Wildcards' for Title Filter Rules ###
+
+You might want to apply a child task to a parent work item if the parent work item *title* matches *completely* or only *partially*. It's possible to compare the parent work item *title* by using a *wildcard* string as the filter rule and using the asterick character ("*").
+
+``` json
+{
+    "applywhen": [
+    {
+        "System.WorkItemType": "Product Backlog Item",
+        "System.Title": "*WildcardString*"
+    }]
+}
+```
+
+The following are examples of how the wildcard comparison can be used:
+
+```
+- "a*b"     Everything that starts with "a" and ends with "b"
+- "a*"      Everything that starts with "a"
+- "*b"      Everything that ends with "b"
+- "*a*"     Everything that has an "a" in it
+- "*a*b*"   Everything that has an "a" in it, followed by anything, followed by a "b", followed by anything
+```
+
 ## Credits ##
 
-Clone from https://github.com/figueiredorui/1-click-child-links
+Cloned from https://github.com/figueiredorui/1-click-child-links
