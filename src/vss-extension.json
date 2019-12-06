@@ -1,14 +1,14 @@
 {
     "manifestVersion": 1.0,
     "id": "create-child-tasks",
-    "version": "0.1.13",
+    "version": "0.2.1",
     "name": "Create Child Tasks",
     "description": "Add pre-defined task templates to a work item with a single click.",
     "public": false,
     "publisher": "wilksmatt",
     "repository": {
         "type": "git",
-        "uri": "https://github.com/wilksmatt/1-click-child-links"
+        "uri": "https://github.com/wilksmatt/azure-devops-extension-create-child-tasks"
     },
     "icons": {
         "default": "img/create-child-tasks-logo-128x128.png"
@@ -24,13 +24,13 @@
             "path": "img/create-child-tasks-screenshot-manage-templates-filter-rules.png"
         },
         {
-            "path": "img/create-child-tasks-screenshot-manage-templates-menu-item.png"
+            "path": "img/create-child-tasks-screenshot-work-item-menu-item.png"
         },
         {
-            "path": "img/create-child-tasks-screenshot-manage-templates-work-item-tasks.png"
+            "path": "img/create-child-tasks-screenshot-work-item-tasks.png"
         },
         {
-            "path": "img/create-child-tasks-screenshot-manage-templates-board-work-item-tasks.png"
+            "path": "img/create-child-tasks-screenshot-board-work-item-tasks.png"
         }
     ],
     "tags": [
