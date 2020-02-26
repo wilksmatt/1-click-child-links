@@ -4,7 +4,7 @@
     "version": "0.3.0",
     "name": "Create Child Tasks",
     "description": "Add pre-defined task templates to a work item with a single click.",
-    "public": false,
+    "public": true,
     "publisher": "wilksmatt",
     "repository": {
         "type": "git",
