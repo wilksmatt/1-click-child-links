@@ -9,8 +9,8 @@
     "requirejs": "^2.2.0",
     "vss-web-extension-sdk": "^1.104.0"
   },
-  "name": "create-child-tasks",
-  "private": true,
-  "version": "0.2.2",
+  "name": "create-child-tasks-public",
+  "private": false,
+  "version": "0.3.0",
   "scripts": {}
 }
