@@ -69,19 +69,37 @@ define(["TFS/WorkItemTracking/Services", "TFS/WorkItemTracking/RestClient", "TFS
             return fieldValue;
         }
 
+        /**
+         * Create the child task work item based on the rules from the task work item template.
+         * @param {*} currentWorkItem 
+         * @param {*} taskTemplate 
+         * @param {*} teamSettings 
+         */
         function createWorkItemFromTemplate(currentWorkItem, taskTemplate, teamSettings) {
+            
+            // Create the new child task work item
             var workItem = [];
 
+            // Iteration through every field in the task template
             for (var key in taskTemplate.fields) {
+
+                // Check whether we are supporting the specific field / property in the task template
                 if (IsPropertyValid(taskTemplate, key)) {
-                    //if field value is empty copies value from parent
+
+                    // If field value is empty, copy the value from the parent
                     if (taskTemplate.fields[key] == '') {
+
+                        // Check if the parent work item has a value to copy from. If so, use it.
                         if (currentWorkItem[key] != null) {
+
+                            // Copy the field value from the parent work item to the child task work item
                             workItem.push({ "op": "add", "path": "/fields/" + key, "value": currentWorkItem[key] })
                         }
                     }
                     else {
+
                         var fieldValue = taskTemplate.fields[key];
+
                         //check for references to parent fields - {fieldName}
                         fieldValue = replaceReferenceToParentField(fieldValue, currentWorkItem);
 
@@ -90,32 +108,33 @@ define(["TFS/WorkItemTracking/Services", "TFS/WorkItemTracking/RestClient", "TFS
                 }
             }
 
-            // if template has no title field copies value from parent
-            if (taskTemplate.fields['System.Title'] == null)
+            // If template has no title field copies value from parent
+            if (taskTemplate.fields['System.Title'] == null){
                 workItem.push({ "op": "add", "path": "/fields/System.Title", "value": currentWorkItem['System.Title'] })
+            }
 
-            // if template has no AreaPath field copies value from parent
-            if (taskTemplate.fields['System.AreaPath'] == null)
+            // If template has no AreaPath field copies value from parent
+            if (taskTemplate.fields['System.AreaPath'] == null){
                 workItem.push({ "op": "add", "path": "/fields/System.AreaPath", "value": currentWorkItem['System.AreaPath'] })
+            }
 
-            // if template has no IterationPath field copies value from parent
-            // check if IterationPath field value is @currentiteration
-            if (taskTemplate.fields['System.IterationPath'] == null)
+            // If template has no IterationPath field copies value from parent, check if IterationPath field value is @currentiteration
+            if (taskTemplate.fields['System.IterationPath'] == null){
                 workItem.push({ "op": "add", "path": "/fields/System.IterationPath", "value": currentWorkItem['System.IterationPath'] })
-            else if (taskTemplate.fields['System.IterationPath'].toLowerCase() == '@currentiteration')
+            }else if (taskTemplate.fields['System.IterationPath'].toLowerCase() == '@currentiteration'){
                 workItem.push({ "op": "add", "path": "/fields/System.IterationPath", "value": teamSettings.backlogIteration.name + teamSettings.defaultIteration.path })
+            }
 
-            // check if AssignedTo field value is @me
+            // Check if AssignedTo field value is @me
             if (taskTemplate.fields['System.AssignedTo'] != null) {
                 if (taskTemplate.fields['System.AssignedTo'].toLowerCase() == '@me') {
                     workItem.push({ "op": "add", "path": "/fields/System.AssignedTo", "value": ctx.user.uniqueName })
                 }
+            }
 
-                // if (taskTemplate.fields['System.AssignedTo'].toLowerCase() == '') {
-                //     if (WIT['System.AssignedTo'] != null) {
-                //         workItem.push({ "op": "add", "path": "/fields/System.AssignedTo", "value": currentWorkItem['System.AssignedTo'] })
-                //     }
-                // }
+            // Copy tags from task template to new task work item // Work Item Template field for tags is called 'System.Tags-Add', but child task work item field is called 'System.Tags'
+            if(taskTemplate.fields['System.Tags-Add'] != undefined) {
+                workItem.push({ "op": "add", "path": "/fields/System.Tags", "value": taskTemplate.fields['System.Tags-Add'] })
             }
 
             return workItem;
